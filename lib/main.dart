@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xFFF5DEB3)
+        scaffoldBackgroundColor: const Color(0xFFF5DEB3)
       ),
       home: Scaffold(
         appBar: AppBar(
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: constraints.maxHeight * 0.30,
+                    height: constraints.maxHeight * 0.20,
                     child: Stack(
                       children: [
                         Align(
@@ -63,14 +63,14 @@ class MyApp extends StatelessWidget {
                   ),
                   // Segunda columna: descripción (25% de la pantalla)
                   Container(
-                    height: constraints.maxHeight * 0.25,
+                    height: constraints.maxHeight * 0.20,
                     child: const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
                           padding: EdgeInsets.all(10),
                           child: Text(
-                            '¡Prepárate para volar hacia el futuro con los Nike "JetSneaks"! Estos zapatos futuristas son como dos pequeños cohetes para tus pies. Con un diseño tan llamativo que incluso los extraterrestres envidiarán, los JetSneaks te llevarán a la velocidad de la luz mientras caminas por la Tierra. ¡No te sorprendas si la NASA te llama para una carrera espacial! ¡Conviértete en el astronauta de la moda y despega con los Nike JetSneaks hoy mismo!',
+                            '¡Prepárate para volar hacia el futuro con los Nike "JetSneaks"! Estos zapatos futuristas son como dos pequeños cohetes para tus pies, los JetSneaks te llevarán a la velocidad de la luz mientras caminas por la Tierra. ¡No te sorprendas si la NASA te llama para una carrera espacial! ¡Conviértete en el astronauta de la moda y despega con los Nike JetSneaks hoy mismo!',
                             textAlign: TextAlign.center, textScaleFactor: 1.05
                           ),
                         ),
@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: constraints.maxHeight * 0.20,
+                    height: constraints.maxHeight * 0.11,
                     child: const Row(
                       children: [
                         Expanded(
@@ -111,7 +111,7 @@ class MyApp extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: constraints.maxHeight * 0.20,
+                    height: constraints.maxHeight * 0.10,
                     child: Row(
                       children: [
                         // Primera columna: botón "Add to bag" (50% del ancho)
@@ -140,10 +140,99 @@ class MyApp extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(
+                    height: constraints.maxHeight * 0.30,
+                    child: const CustomCard(),
+                  ),
                 ],
               ),
             );
           },
+        ),
+      ),
+    );
+  }
+}
+class CustomCard extends StatelessWidget {
+  const CustomCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+
+      color: Colors.purple,
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      child: Container(
+        decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(2),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Colors.blue, Colors.purple],
+          ),
+        ),
+        width: 300,
+        height: 200,
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: ClipRect(
+                child: Transform.translate(
+                  offset: Offset(150, 0),
+                  child: Container(
+                    width: 500,
+                    height: 300,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white.withOpacity(0.2),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const Align(
+              alignment: Alignment.topLeft,
+              child: Icon(Icons.star, size: 30, color: Colors.white),
+            ),
+            const Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: Icon(Icons.image, size: 50, color: Colors.white),
+              ),
+            ),
+            const Align(
+              alignment: Alignment(0, -0.2),
+              child: Text(
+                'Título',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFFF4F4F4)),
+              ),
+            ),
+            const Align(
+              alignment: Alignment(0, 0.2),
+              child: Text(
+                'Descripción básica del producto',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, color: Color(0xFFF4F4F4)),
+              ),
+            ),
+            const Align(
+              alignment: Alignment.bottomLeft,
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text('Fecha:', style: TextStyle(color: Color(0xFFF4F4F4))),
+              ),
+            ),
+            const Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text('06/10/2023', style: TextStyle(color: Color(0xFFF4F4F4))),
+              ),
+            ),
+          ],
         ),
         
       ),
